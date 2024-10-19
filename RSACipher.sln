@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSACipher.Core", "RSACipher.Core\RSACipher.Core.csproj", "{D5A6DAEF-D02C-4B65-AB34-62C78AA73FAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSACipher.App", "RSACipher.App\RSACipher.App.csproj", "{28FFA32A-CBDD-464E-99D9-0040F7786356}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSACipher.Services", "RSACipher.Services\RSACipher.Services.csproj", "{72E75C2A-77AD-4F5E-8892-814195178E55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{DE69421E-D424-401F-B64D-52DA211D7980}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSACipher.Infrastructure", "RSACipher.Infrastructure\RSACipher.Infrastructure.csproj", "{C7D22E0B-1883-46E1-BD13-61E122EB72F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSACipher.Front", "RSACipher.Front\RSACipher.Front.csproj", "{95598347-ED2B-4659-A7DB-D5CF1B1C5EA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5A6DAEF-D02C-4B65-AB34-62C78AA73FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A6DAEF-D02C-4B65-AB34-62C78AA73FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A6DAEF-D02C-4B65-AB34-62C78AA73FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A6DAEF-D02C-4B65-AB34-62C78AA73FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FFA32A-CBDD-464E-99D9-0040F7786356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FFA32A-CBDD-464E-99D9-0040F7786356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FFA32A-CBDD-464E-99D9-0040F7786356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FFA32A-CBDD-464E-99D9-0040F7786356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E75C2A-77AD-4F5E-8892-814195178E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E75C2A-77AD-4F5E-8892-814195178E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E75C2A-77AD-4F5E-8892-814195178E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E75C2A-77AD-4F5E-8892-814195178E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE69421E-D424-401F-B64D-52DA211D7980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE69421E-D424-401F-B64D-52DA211D7980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE69421E-D424-401F-B64D-52DA211D7980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE69421E-D424-401F-B64D-52DA211D7980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D22E0B-1883-46E1-BD13-61E122EB72F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D22E0B-1883-46E1-BD13-61E122EB72F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D22E0B-1883-46E1-BD13-61E122EB72F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D22E0B-1883-46E1-BD13-61E122EB72F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95598347-ED2B-4659-A7DB-D5CF1B1C5EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95598347-ED2B-4659-A7DB-D5CF1B1C5EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95598347-ED2B-4659-A7DB-D5CF1B1C5EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95598347-ED2B-4659-A7DB-D5CF1B1C5EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3B92F2D-59B8-40E5-8631-C68F7A36D9ED}
+	EndGlobalSection
+EndGlobal

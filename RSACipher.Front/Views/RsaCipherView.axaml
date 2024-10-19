@@ -1,0 +1,354 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="768"
+        
+		xmlns:local="clr-namespace:RSACipher.Front.ViewModels"
+        x:DataType="local:RsaCipherViewModel"
+		x:Class="RSACipher.Front.Views.RsaCipherView">
+
+	<UserControl.Styles>
+		<Style Selector="TextBox">
+			<Style Selector="^:focus">
+				<Style Selector="^ /template/ Border#PART_BorderElement">
+					<Setter Property="Background" Value="#FFFFFF"/>
+					<Setter Property="BorderBrush" Value="black"/>
+					<Setter Property="BorderThickness" Value="1" />
+				</Style>
+			</Style>
+		</Style>
+
+		<Style Selector="Image">
+			<Style Selector="^.Download">
+				<Style Selector="^ /template/ Border#PART_BorderElement">
+					<Setter Property="Background" Value="#FFFFFF"/>
+					<Setter Property="BorderBrush" Value="black"/>
+					<Setter Property="BorderThickness" Value="1" />
+				</Style>
+			</Style>
+		</Style>
+
+
+
+
+		<Style Selector="Button">
+			<Style Selector="^.Upload, ^.Download">
+				<Setter Property="BorderThickness" Value="0" />
+				<Style Selector="^:pressed">
+					<Setter Property="RenderTransform" Value="scale(0.95)" />
+				</Style>
+				<Style Selector="^:pointerover /template/ ContentPresenter">
+					<Setter Property="Background" Value="#8f8f8faa"/>
+					<Setter Property="BorderBrush" Value=""/>
+					<Setter Property="BorderThickness" Value="0" />
+				</Style>
+			</Style>
+		</Style>
+
+
+
+
+	</UserControl.Styles>
+
+	<Border Padding="32, 40, 32, 32">
+		<StackPanel>
+			<Grid ColumnDefinitions="*, 64, *" >
+				<StackPanel
+					Grid.Column="0"
+					Grid.Row="0"
+					Background="LightBlue">
+					<Label
+						HorizontalAlignment="Stretch"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Top"
+						FontSize="36"
+						Background="LightGray">
+						Your keys
+					</Label>
+
+					<Grid
+						ColumnDefinitions="0.3*, 0.8*"
+						RowDefinitions="*, 16, *, 16, *"
+						Margin="8, 24, 8, 8">
+						<Label
+							Grid.Column="0"
+							Grid.Row="0"
+							FontSize="36"
+							HorizontalAlignment="Stretch"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							Background="Beige"
+							CornerRadius="8, 0, 0, 8"
+							BorderBrush="Black"
+							BorderThickness="1">
+							Public
+						</Label>
+
+						<Label
+							Grid.Column="0"
+							Grid.Row="2"
+							FontSize="36"
+							HorizontalAlignment="Stretch"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							Background="Beige"
+							CornerRadius="8, 0, 0, 8"
+							BorderBrush="Black"
+							BorderThickness="1">
+							Private
+						</Label>
+
+						<Grid
+							Grid.Column="2"
+							Grid.Row="0">
+							<TextBox
+								KeyDown=""
+								CornerRadius="0, 8, 8, 0"
+								BorderThickness="1"
+								BorderBrush="Black"
+								Background="Beige"
+								Padding="8, 8, 8, 8"
+								FontSize="24"
+								Text="{Binding PublicKey}">
+								<!--Padding="8, 8, 64, 8"-->
+							</TextBox>
+
+							<!--<Button
+								Classes="Download"
+								Name="publicKeyLoad"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								Margin="8, 0, 8, 0"
+								Padding="4"
+								Background="Transparent"
+								CornerRadius="100">
+								<Image
+									Source="/Assets/download2.png"
+									Width="32">
+								</Image>
+							</Button>-->
+						</Grid>
+
+						<Grid
+							Grid.Column="2"
+							Grid.Row="2">
+							<TextBox
+								KeyDown=""
+								CornerRadius="0, 8, 8, 0"
+								BorderThickness="1"
+								BorderBrush="Black"
+								Background="Beige"
+								Padding="8, 8, 8, 8"
+								FontSize="24"
+								Text="{Binding PrivateKey}">
+								<!--Padding="8, 8, 64, 8"-->
+							</TextBox>
+
+							<!--<Button
+								Name="privateKeyLoad"
+								Classes="Download"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								Margin="8, 0, 8, 0"
+								Padding="4"
+								Background="Transparent"
+								CornerRadius="100"
+								>
+								<Image
+									Source="/Assets/download2.png"
+									Width="32">
+								</Image>
+							</Button>-->
+						</Grid>
+
+
+						<!--<Button
+							Name="Upload"
+							Classes="Upload"
+							Grid.Column="0"
+							Grid.Row="4"
+							Margin="4, 0, 4, 0"
+							Padding="8"
+							HorizontalAlignment="Left"
+							Background="Transparent"
+							CornerRadius="100">
+							<Image
+								Source="/Assets/upload.png"
+								Width="48">
+							</Image>
+						</Button>-->
+
+						<Button
+							Click="OnGenerateKeyBtnClicked"
+							Name="GenerateKeys"
+							Grid.Column="2"
+							Grid.Row="4"
+							HorizontalAlignment="Right"
+							FontSize="36"
+							Padding="16, 0, 16, 0"
+							CornerRadius="8"
+							Margin="0"
+							Background="Beige">
+
+							Generate
+						</Button>
+
+					</Grid>
+				</StackPanel>
+
+				<Border Grid.Column="2" Grid.Row="0">
+					<Image
+						Source="/Assets/RSARed.png"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						/>
+				</Border>
+			</Grid>
+
+			<Grid
+				ColumnDefinitions="0.2*, 0.8*"
+				RowDefinitions="*, 16, *, 16, *, 16, *"
+				Margin="0, 54, 0, 24">
+				<Label
+					Grid.Column="0"
+					Grid.Row="0"
+					FontSize="32"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Beige"
+					CornerRadius="16, 0, 0, 16"
+					BorderBrush="Black"
+					BorderThickness="1"
+					Padding="16, 8, 16, 8"
+					>
+					Message
+				</Label>
+
+				<Label
+					Grid.Column="0"
+					Grid.Row="2"
+					FontSize="32"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Beige"
+					CornerRadius="16, 0, 0, 16"
+					BorderBrush="Black"
+					BorderThickness="1"
+					Padding="16, 8, 16, 8">
+					Result
+				</Label>
+
+				<Canvas
+					Margin="0"
+					Grid.Column="0"
+					Grid.Row="4">
+				</Canvas>
+
+				<Button
+					Click="OnEncodeBtnClicked"
+					Grid.Column="0"
+					Grid.Row="6"
+					FontSize="36"
+					HorizontalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Beige"
+					CornerRadius="16"
+					BorderBrush="Black"
+					BorderThickness="1"
+					Padding="32, 16, 32, 16">
+					Encode
+				</Button>
+
+				<Button
+					Click="OnDecodeBtnClicked"
+					Name="DecodeMessage"
+					Grid.Column="1"
+					Grid.Row="6"
+					FontSize="36"
+					HorizontalAlignment="Right"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Beige"
+					CornerRadius="16"
+					BorderBrush="Black"
+					BorderThickness="1"
+					Padding="32, 16, 32, 16">
+					Decode
+				</Button>
+
+				<Grid
+					Grid.Column="2"
+					Grid.Row="0">
+					<TextBox
+						KeyDown="MessageTextBoxKeyPressedHandler"
+						PastingFromClipboard="MessageTextBoxPasteHandler"
+						Name="Message"
+						Text="{Binding Message}"
+						CornerRadius="0, 8, 8, 0"
+						BorderThickness="1"
+						BorderBrush="Black"
+						Background="Beige"
+						Padding="8, 8, 64, 8"
+						FontSize="28"
+						>
+						<!--Padding="8, 8, 64, 8"-->
+					</TextBox>
+
+					<Button
+						Click="OnDownloadMessageBtnClicked"
+						Classes="Download"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						Margin="8, 0, 8, 0"
+						Padding="4"
+						Background="Transparent"
+						CornerRadius="100">
+						<Image
+							Source="/Assets/download2.png"
+							Width="32">
+						</Image>
+					</Button>
+				</Grid>
+
+				<Grid
+					Grid.Column="2"
+					Grid.Row="2">
+					<TextBox
+						Name="Result"
+						Text="{Binding Result}"
+						CornerRadius="0, 8, 8, 0"
+						BorderThickness="1"
+						BorderBrush="Black"
+						Background="Beige"
+						Padding="8, 8, 64, 8"
+						FontSize="28"
+						IsReadOnly="True"
+						>
+						<!--Padding="8, 8, 64, 8"-->
+					</TextBox>
+
+					<Button
+						Click="OnUploadResultBtnClick"
+						Classes="Upload"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						Margin="8, 0, 8, 0"
+						Padding="4"
+						Background="Transparent"
+						CornerRadius="100">
+						<Image
+							Source="/Assets/uploadArrow.png"
+							Width="32">
+						</Image>
+					</Button>
+				</Grid>
+
+			</Grid>
+		</StackPanel>
+	</Border>
+
+</UserControl>
