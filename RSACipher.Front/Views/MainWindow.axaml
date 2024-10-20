@@ -3,11 +3,12 @@
         xmlns:vm="using:RSACipher.Front.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="768"
         x:Class="RSACipher.Front.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="RSACipher.Front">
+        Icon="/Assets/lock-logo.ico"
+        Title="RSA Cipher App"
+		SizeToContent="WidthAndHeight">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,

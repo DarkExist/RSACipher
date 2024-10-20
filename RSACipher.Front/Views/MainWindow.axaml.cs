@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace RSACipher.Front.Views
 {
@@ -7,6 +8,15 @@ namespace RSACipher.Front.Views
 		public MainWindow()
 		{
 			InitializeComponent();
+
+		}
+
+		protected override void OnLoaded(RoutedEventArgs e)
+		{
+			base.OnLoaded(e);
+			MinWidth = 1180;
+			MinHeight = Height;
+			SizeToContent = SizeToContent.Manual;
 		}
 	}
 }
