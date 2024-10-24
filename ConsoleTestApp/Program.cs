@@ -15,24 +15,30 @@ namespace ConsoleTestApp
 {
 	internal class Program
 	{
-		private IServiceCollection _services = new ServiceCollection();
-		private IServiceProvider _serviceProvider;
 
-		public Program()
+		public static List<string> Alphabet { get; private set; } = new();
+		public static void AlphabetFill()
 		{
-			_services.AddService();
-			_serviceProvider = _services.BuildServiceProvider();
+			for (int i = 33; i <= 126; i++)
+			{
+				/*if (i == '\\')
+					continue;*/
+				Alphabet.Add(((char)i).ToString());
+			}
+
+			for (int i = 1040; i <= 1103; i++)
+			{
+				Alphabet.Add(((char)i).ToString());
+			}
+			Alphabet.Add(((char)1025).ToString());
+			Alphabet.Add(((char)1105).ToString());
 		}
 
-		public void Run()
+		static void Main(string[] args)
 		{
-
-			var as111111111d = (char)1088;
+			/*var as111111111d = (char)1088;
 
 			Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
-
-			var cccEx = new ccc(_serviceProvider.GetRequiredService<IReadFile>(),
-								_serviceProvider.GetRequiredService<IWriteFile>());
 
 			Console.WriteLine(File.Exists("C:\\Users\\relog\\Downloads\\asd.txt"));
 
@@ -43,7 +49,7 @@ namespace ConsoleTestApp
 			Console.WriteLine(end - start);
 			Console.WriteLine(keyPair);
 
-			var asd = "涁ABoba We, Друзья!涁ꀩힰ";
+			var asd = "涁ABa We, я!涁ꀩힰ";
 			byte[] bytes = Encoding.UTF32.GetBytes(asd);
 			foreach (byte b in bytes)
 			{
@@ -89,14 +95,59 @@ namespace ConsoleTestApp
 			end = DateTime.Now;
 
 
-			Console.WriteLine(end - start);
+			Console.WriteLine(end - start);*/
+			AlphabetFill();
+			int lowerBorder = 1, upperBorder = 1000000, form = 10;
+			Dictionary<int, TimeSpan> perfomanceEncodeResults = new();
+			Dictionary<int, TimeSpan> perfomanceDecodeResults = new();
+
+			for (int i = lowerBorder; i < upperBorder; i *= form)
+			{
+				DateTime start, end, start1, end1;
+				
+				string randomString = GenerateRandomString(i);
+				byte[] bytes = Encoding.Unicode.GetBytes(randomString);
+				List<BigInteger> numbers = new List<BigInteger>();
+
+				KeyPair keyPair = KeyGenerator.GetRSAKeys(33);
+				(BigInteger S, BigInteger N) = keyPair.PublicKey;
+				(BigInteger E, N) = keyPair.PrivateKey;
+
+				start = DateTime.Now;
+				numbers = RSAEncode.Encode(bytes, Tuple.Create(S, N));
+				end = DateTime.Now;
+
+				start1 = DateTime.Now;
+				RSADecode.Decode(numbers, Tuple.Create(E, N));
+				end1 = DateTime.Now;
+
+				perfomanceEncodeResults[i] = end - start;
+				perfomanceDecodeResults[i] = end1 - start1;
+				Console.WriteLine($"Encoding of message with length {i} takes {end - start}");
+				Console.WriteLine($"DEcoding of message with length {i} takes {end1 - start1}");
+			}
+
+			Console.WriteLine("Результаты кодирования");
+			foreach (KeyValuePair<int, TimeSpan> keyValuePair in perfomanceEncodeResults)
+			{
+				Console.WriteLine(keyValuePair.ToString());
+			}
+
+			Console.WriteLine("Результаты декодирования");
+			foreach (KeyValuePair<int, TimeSpan> keyValuePair in perfomanceDecodeResults)
+			{
+				Console.WriteLine(keyValuePair.ToString());
+			}
 		}
 
-		static void Main(string[] args)
+		public static string GenerateRandomString(int length)
 		{
-			var app = new Program();
-			app.Run();
-			
+			Random random = new Random();
+			string randomString = new string(Enumerable.Repeat(0, length)
+				.Select(_ => Alphabet[random.Next(Alphabet.Count)][0])
+				.ToArray());
+
+			return randomString;
 		}
 	}
 }

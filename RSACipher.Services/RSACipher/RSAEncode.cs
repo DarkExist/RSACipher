@@ -16,15 +16,16 @@ namespace RSACipher.Services.RSACipher
 			List<int> intNumbersInUnicode = byteArrayToIntArray(data);
 			(BigInteger S, BigInteger N) = publicKey;
 
-			int sizeOfBlock = CountSizeOfBlock(data, N, amountOfBlocks);
+			int sizeOfBlock = CountSizeOfBlock(intNumbersInUnicode, N, amountOfBlocks);
 
 			List<BigInteger> result = new List<BigInteger>();
 
-			var chunks = intNumbersInUnicode.Chunk(sizeOfBlock);
+			var chunks = intNumbersInUnicode.Chunk(6);
 			
 			foreach (var chunk in chunks)
 			{
-				string tempCipher = "";
+				StringBuilder tempCipherBuilder = new StringBuilder();
+				//string tempCipher = "";
 				for (int j = 0; j < chunk.Length; j++)
 				{
 					string stringByte = chunk[j].ToString();
@@ -32,11 +33,12 @@ namespace RSACipher.Services.RSACipher
 					if (amountOfLeadZerosRequired == lenOfSymbol)
 						amountOfLeadZerosRequired = 0;
 					stringByte = stringByte.Insert(0, MultiplyString("0", amountOfLeadZerosRequired));
-					tempCipher += stringByte;
+					tempCipherBuilder.Append(stringByte);
 				}
-				BigInteger block = BigInteger.Parse(tempCipher);
+				BigInteger block = BigInteger.Parse(tempCipherBuilder.ToString());
 				BigInteger cipheredBlock = ModularExponentiation.RtLBinaryMethod(block, S, N);
 				result.Add(cipheredBlock);
+				tempCipherBuilder.Clear();
 			}
 
 			return result;
@@ -59,8 +61,8 @@ namespace RSACipher.Services.RSACipher
 			}
 		}
 
-		private static int CountSizeOfBlock(byte[] data, BigInteger N, BigInteger amountOfBlocks) {
-			int probablySize = (int)Math.Ceiling((double)data.Length / (double)amountOfBlocks);
+		private static int CountSizeOfBlock(List<int> data, BigInteger N, BigInteger amountOfBlocks) {
+			int probablySize = (int)Math.Ceiling((double)data.Count / (double)amountOfBlocks);
 
 			if (probablySize == 0)
 				throw new InvalidParameterException("Data is empty");
@@ -72,12 +74,7 @@ namespace RSACipher.Services.RSACipher
 
 		private static string MultiplyString(string str, BigInteger count)
 		{
-			string result = "";
-			for (BigInteger i = 0; i < count; i++)
-			{
-				result += str;
-			}
-			return result;
+			return new StringBuilder().Insert(0, str, (int)count).ToString();
 		}
 
 		private static List<int> byteArrayToIntArray(byte[] data)

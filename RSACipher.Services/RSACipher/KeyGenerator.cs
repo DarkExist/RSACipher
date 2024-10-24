@@ -16,16 +16,16 @@ namespace RSACipher.Services.RSACipher
 		{
 			Tuple<BigInteger, BigInteger, BigInteger> PQNTuple = GetPandQandN(numberOfDigitInN);
 			BigInteger P = PQNTuple.Item1, Q = PQNTuple.Item2, N = PQNTuple.Item3;
-			Console.WriteLine("PQN!");
+			//Console.WriteLine("PQN!");
 
 
 			BigInteger d = GetEilerValue(P, Q);
 			
-			Console.WriteLine("Eiler!");
+			//Console.WriteLine("Eiler!");
 			BigInteger s = GetSValue(d);
-			Console.WriteLine("S!");
+			//Console.WriteLine("S!");
 			BigInteger e = GetEValue(s, d);
-			Console.WriteLine("E!");
+			//Console.WriteLine("E!");
 
 			KeyPair keyPair = new KeyPair((s, N), (e, N));
 			return keyPair;
@@ -38,7 +38,7 @@ namespace RSACipher.Services.RSACipher
 			{
 				(P, Q) = GeneratePrimesForLength(numberOfDigitInN);
 				tempResult = P * Q;
-				Console.WriteLine($"{P.ToString()}, {Q.ToString()}, {tempResult}, {tempResult.ToString().Length}");
+				//Console.WriteLine($"{P.ToString()}, {Q.ToString()}, {tempResult}, {tempResult.ToString().Length}");
 			} while (tempResult.ToString().Length != numberOfDigitInN || !IsPrime(P) || !IsPrime(Q));
 			result = tempResult;
 
@@ -55,7 +55,7 @@ namespace RSACipher.Services.RSACipher
 			BigInteger randomValue;
 			do {
 				randomValue = GetRandomBigInteger(d);
-				Console.WriteLine($"d: {randomValue}");
+				//Console.WriteLine($"d: {randomValue}");
 			} while (!IsCoprime(randomValue, d));
 
 			return randomValue;
